@@ -1,0 +1,71 @@
+<div class="modal fade" id="instagram-failed" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>{intl d='instagram.ai' l="An error occured"}</h3>
+      </div>
+      <div class="modal-body" id="instagram-failed-body">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="general-block-decorator">
+  <div class="row">
+
+    <div class="col-md-12 title title-without-tabs">
+      {intl d='instagram.ai' l='Edit your Instagram! configuration.'}
+    </div>
+
+    <div class="form-container">
+      <div class="col-md-12">
+
+        {form name="instagram.config"}
+          <form method="POST" id="instagram-form" action="{url path="/admin/module/Instagram/save"}" {form_enctype form=$form} class="clearfix">
+
+            {form_hidden_fields form=$form}
+
+            {form_field form=$form field='access_token'}
+            <div class="form-group ">
+              <label class="control-label" for="{$label_attr.for}">
+                {$label}
+                <span class="required">*</span>
+              </label>
+              <input id="instagram_config-id-access_token" class="form-control " type="text" required="" aria-required="true" value="{$value}" name="{$name}">
+            </div>
+            {/form_field}
+
+            {form_field form=$form field='username'}
+              <div class="form-group ">
+                <label class="control-label" for="{$label_attr.for}">
+                  {$label}
+                  <span class="required">*</span>
+                </label>
+                <input id="instagram_config-id-username" class="form-control " type="text" required="" aria-required="true" value="{$value}" name="{$name}">
+              </div>
+            {/form_field}
+            
+            {form_field form=$form field='photos_quantity'}
+              <div class="form-group ">
+                <label class="control-label" for="{$label_attr.for}">
+                  {$label}
+                  <span class="required">*</span>
+                </label>
+                <input id="instagram_config-id-photos_quantity" class="form-control " type="text" required="" aria-required="true" value="{$value}" name="{$name}">
+              </div>
+            {/form_field}
+
+            <button type="submit" id="instagram-save" name="instagram_save" value="save" class="form-submit-button btn btn-sm btn-default" title="{intl d='instagram.ai' l='Save'}">{intl d='instagram.ai' l='Save'}</button>
+          </form>
+        {/form}
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
