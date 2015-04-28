@@ -26,31 +26,24 @@ use Instagram\Instagram;
 class ConfigForm extends BaseForm
 {
 
-    /**
-     *
-     * in this function you add all the fields you need for your Form.
-     * Form this you have to call add method on $this->formBuilder attribute :
-     *
-     * $this->formBuilder->add("name", "text")
-     *   ->add("email", "email", array(
-     *           "attr" => array(
-     *               "class" => "field"
-     *           ),
-     *           "label" => "email",
-     *           "constraints" => array(
-     *               new \Symfony\Component\Validator\Constraints\NotBlank()
-     *           )
-     *       )
-     *   )
-     *   ->add('age', 'integer');
-     *
-     * @return null
-     */
     protected function buildForm()
     {
         $translator = Translator::getInstance();
 
-        $this->formBuilder->add(
+        $this->formBuilder
+        -> add( 
+        	"debug_mode",
+        	"checkbox", 
+            array(
+               	"label" =>$translator->trans("Debug Mode", [],'instagram'),
+               	"label_attr" => array
+               	(
+               		"for" => "debug_mode",
+			   		"help" => $translator->trans("By activating Debug mode, you will display all error messages in front office. Disable it for production environment.", [], 'instagram')
+			   )
+            )
+        )
+        ->add(
             'access_token',
             'text',
             [
@@ -58,7 +51,11 @@ class ConfigForm extends BaseForm
                     new NotBlank()
                 ],
                 'label' => $translator->trans('access token', [], 'instagram'),
-                'data' => ConfigQuery::read('instagram_access_token')
+                'label_attr' => array
+               	(
+               		"for" => "debug_mode"
+			   	),
+			   	'data' => ConfigQuery::read('instagram_access_token')
             ]
         )
         ->add(

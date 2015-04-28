@@ -13,6 +13,7 @@
 namespace Instagram;
 
 use Thelia\Module\BaseModule;
+use Thelia\Model\ConfigQuery;
 
 class Instagram extends BaseModule
 {
@@ -26,7 +27,7 @@ class Instagram extends BaseModule
      * Constructor
      */
     function __construct($username='',$access_token='') {
-            $this->username=$username;
+            $this->username = $username;
             $this->access_token = $access_token;
     }
     /*
@@ -100,8 +101,12 @@ class Instagram extends BaseModule
      * Common mechanism to query the instagram api
      */
     public function queryInstagram($url){
+	    
+	    if (!is_dir(__DIR__.'/cache/')){ 
+			mkdir (__DIR__.'/cache/', 0755); 
+		} 
         //prepare caching
-        $cachefolder = __DIR__.'/';
+        $cachefolder = __DIR__.'/cache/';
         $cachekey = md5($url);
         $cachefile = $cachefolder.$cachekey.'_'.date('i').'.txt'; //cached for one minute
         //If not cached, -> instagram request
@@ -129,7 +134,9 @@ class Instagram extends BaseModule
      * Error  
      */ // 
     public function error($src=''){
-        echo '/!\ error '.$src.'. ';
+	    if (ConfigQuery::read('instagram_debug_mode') == 1) {
+        	echo '<div class="alert alert-danger">/!\ Instagram error : '.$src.'.</div>';
+        }
     }
 
 }
