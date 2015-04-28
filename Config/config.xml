@@ -11,7 +11,7 @@
     <hooks>
         <!-- front -->
         <hook id="instagram.hook.front" class="Instagram\Hook\FrontHook" scope="request">
-            <tag name="hook.event_listener" event="main.footer-body" method="ShowInstagram" />
+            <tag name="hook.event_listener" event="main.footer-body" />
         </hook>
     </hooks>
 

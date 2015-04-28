@@ -15,6 +15,6 @@
         <email>enurit@openstudio.fr</email>
     </author>
     <type>classic</type>
-    <thelia>2.0.0</thelia>
+    <thelia>2.1.0</thelia>
     <stability>alpha</stability>
 </module>
