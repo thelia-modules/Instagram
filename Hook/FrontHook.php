@@ -31,7 +31,9 @@ class FrontHook extends BaseHook {
 	        $shots = $isg->getUserMedia(array('count'=>$count)); //Get the shots from instagram
 	        $content = $isg->simpleDisplay($shots);
         } else {
-        	$content = 'Please update your settings to provide a valid username and access token';
+	        if (ConfigQuery::read('instagram_debug_mode') == 1) {
+        		$content = 'Please update your settings to provide a valid username and access token';
+        	}
         }
 
         if ("" != $content){
