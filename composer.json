@@ -1,5 +1,5 @@
 {
-  "name": "thelia/instagram",
+  "name": "thelia/instagram-module",
   "type": "thelia-module",
   "keywords" : ["instagram", "photo", "thelia"],
   "require": {
